@@ -1,13 +1,14 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date
+from sqlalchemy import Column, Integer, String, ForeignKey, Date, create_engine
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-from .db import Base
+from .db import Base, engine
 
 
 class Teacher(Base):
-    __tablename__ = "teachers"
-    id = Column(Integer, primary_key=True)
-    fullname = Column(String(120), nullable=False)
+        __tablename__ = "teachers"
+        id = Column(Integer, primary_key=True)
+        fullname = Column(String(120), nullable=False)
 
 
 class Group(Base):
@@ -43,3 +44,6 @@ class Grade(Base):
     )
     student = relationship("Student", backref="grade")
     discipline = relationship("Discipline", backref="grade")
+
+
+Base.metadata.create_all(engine)

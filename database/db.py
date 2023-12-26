@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 import configparser
 import pathlib
 
@@ -17,7 +17,9 @@ domain = config.get("DB", "domain")
 
 url = f"postgresql://{username}:{password}@{domain}:5432/{db_name}"
 Base = declarative_base()
-engine = create_engine(url, echo=False, pool_size=5)
+engine = create_engine(url, echo=True, pool_size=5)
+
+Base.metadata.create_all(engine)
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
