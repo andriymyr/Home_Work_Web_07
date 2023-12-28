@@ -15,9 +15,7 @@ parser.add_argument("--id_")
 parser.add_argument("--model")
 
 arguments = parser.parse_args()
-# print(arguments)
 my_arg = vars(arguments)
-# print(my_arg)
 
 action = my_arg.get("action")
 model = my_arg.get("model")
