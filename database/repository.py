@@ -38,7 +38,7 @@ def update_(model, _id, name, id_):
         result = session.query(Student).filter(
             and_(Student.id == _id, Student.group_id == id_)
         )
-        result.update({"fullname": name, "group_id": id_})
+        result.update({"fullname": name})
     elif model == "Group":
         result = session.query(Group).filter(Group.id == _id)
         result.update({"name": name})
@@ -50,7 +50,7 @@ def update_(model, _id, name, id_):
     return result.one()
 
 
-def remove_(model, _id, name, id_):
+def remove_(model, _id):
     if model == "Teacher":
         r = session.query(Teacher).filter(Teacher.id == _id).delete()
     elif model == "Student":
