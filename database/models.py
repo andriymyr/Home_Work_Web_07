@@ -6,9 +6,9 @@ from .db import Base, engine
 
 
 class Teacher(Base):
-        __tablename__ = "teachers"
-        id = Column(Integer, primary_key=True)
-        fullname = Column(String(120), nullable=False)
+    __tablename__ = "teachers"
+    id = Column(Integer, primary_key=True)
+    fullname = Column(String(120), nullable=False)
 
 
 class Group(Base):
@@ -46,4 +46,5 @@ class Grade(Base):
     discipline = relationship("Discipline", backref="grade")
 
 
-Base.metadata.create_all(engine)
+# не використовується для alembic
+# Base.metadata.create_all(engine)
